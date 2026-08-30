@@ -98,9 +98,13 @@ export default function Header() {
         </button>
       </div>
 
-      {open && (
-        <div className="border-t border-navy/10 bg-cream md:hidden">
-          <nav className="flex flex-col gap-1 px-6 py-4">
+      <div
+        className={`mobile-menu border-t border-navy/10 bg-cream md:hidden ${
+          open ? "mobile-menu-open" : ""
+        }`}
+        aria-hidden={!open}
+      >
+        <nav className="flex flex-col gap-1 px-6 py-4">
             {links.map((link) => (
               <Link
                 key={link.href}
@@ -118,7 +122,6 @@ export default function Header() {
             </Link>
           </nav>
         </div>
-      )}
     </header>
   );
 }
