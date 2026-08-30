@@ -1,0 +1,71 @@
+import Link from "next/link";
+
+export default function Footer() {
+  const year = new Date().getFullYear();
+
+  return (
+    <footer className="bg-navy py-14 text-cream/70">
+      <div className="mx-auto flex max-w-content flex-col items-center gap-8 px-6 text-center md:flex-row md:items-start md:justify-between md:text-left">
+        <div>
+          <p className="font-display text-2xl italic text-cream">
+            Rj&rsquo;s Cake Shop
+          </p>
+          <p className="mt-2 font-body text-xs uppercase tracking-[0.25em] text-gold">
+            Surrey, BC
+          </p>
+          <p className="mt-4 font-body text-sm leading-relaxed text-cream/55">
+            Made to order from home.
+            <br />
+            Pickup and delivery by arrangement.
+          </p>
+        </div>
+
+        <nav className="flex flex-col gap-3 font-body text-sm">
+          <Link href="/" className="hover:text-cream">
+            Home
+          </Link>
+          <Link href="/shop" className="hover:text-cream">
+            Cakes
+          </Link>
+          <Link href="/custom-cakes" className="hover:text-cream">
+            Custom
+          </Link>
+          <Link href="/contact" className="hover:text-cream">
+            Enquire
+          </Link>
+        </nav>
+
+        <div className="flex flex-col items-center gap-2 font-body text-sm md:items-end">
+          <a
+            href="https://wa.me/17789184162"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-cream"
+          >
+            WhatsApp
+          </a>
+          <a href="tel:+17789184162" className="hover:text-cream">
+            (778) 918-4162
+          </a>
+          <a
+            href="https://www.instagram.com/rjs.cakeshop/"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-cream"
+          >
+            @rjs.cakeshop
+          </a>
+          <Link
+            href="/custom-cakes"
+            className="mt-3 border border-cream/25 px-5 py-2 text-cream transition-colors hover:border-cream/60"
+          >
+            Enquire
+          </Link>
+        </div>
+      </div>
+      <p className="mt-12 text-center font-body text-xs text-cream/35">
+        &copy; {year} Rj&rsquo;s Cake Shop. All rights reserved.
+      </p>
+    </footer>
+  );
+}

@@ -1,0 +1,255 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f5ebd9;
+  color: #3a342e;
+}
+
+::selection {
+  background-color: #1a365d;
+  color: #f5ebd9;
+}
+
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #1a365d;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.reveal {
+  opacity: 0;
+}
+.reveal.is-visible {
+  animation: fadeUp 0.7s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-anim {
+  animation: heroFadeRise 700ms var(--ease-expo) var(--hero-delay, 0ms) both;
+}
+
+.hero-rule {
+  transform-origin: left center;
+  animation: heroRuleIn 400ms var(--ease-expo) var(--hero-delay, 0ms) both;
+}
+
+.hero-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.18em;
+  margin-bottom: -0.18em;
+  padding-right: 0.08em;
+  margin-right: -0.08em;
+}
+
+.hero-line > span {
+  display: block;
+  animation: heroLineUp 900ms var(--ease-expo) var(--hero-delay, 0ms) both;
+}
+
+.hero-frame {
+  animation: heroWipe 1100ms var(--ease-expo) var(--hero-delay, 0ms) both;
+}
+
+.hero-frame-img {
+  animation: heroSettle 1600ms var(--ease-expo) var(--hero-delay, 0ms) both;
+}
+
+@keyframes heroFadeRise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroRuleIn {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes heroLineUp {
+  from {
+    transform: translateY(120%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroWipe {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes heroSettle {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.gallery-section:not(.gallery-view) .gallery-kicker,
+.gallery-section:not(.gallery-view) .gallery-title,
+.gallery-section:not(.gallery-view) .gallery-copy {
+  opacity: 0;
+}
+
+.gallery-section:not(.gallery-view) .gallery-rule {
+  transform: scaleX(0);
+  transform-origin: center;
+}
+
+.gallery-frame {
+  clip-path: inset(100% 0 0 0);
+}
+
+.gallery-wipe-left {
+  clip-path: inset(0 100% 0 0);
+}
+
+.gallery-wipe-right {
+  clip-path: inset(0 0 0 100%);
+}
+
+.gallery-wipe-up {
+  clip-path: inset(100% 0 0 0);
+}
+
+.gallery-section:not(.gallery-view) .gallery-img {
+  transform: scale(1.1);
+}
+
+.gallery-section:not(.gallery-view).is-in .gallery-kicker {
+  animation: heroFadeRise 700ms var(--ease-expo) 0ms both;
+}
+
+.gallery-section:not(.gallery-view).is-in .gallery-rule {
+  animation: heroRuleIn 500ms var(--ease-expo) 90ms both;
+}
+
+.gallery-section:not(.gallery-view).is-in .gallery-title {
+  animation: galleryTitleIn 900ms var(--ease-expo) 160ms both;
+}
+
+.gallery-section:not(.gallery-view).is-in .gallery-copy {
+  animation: heroFadeRise 700ms var(--ease-expo) 280ms both;
+}
+
+.gallery-section:not(.gallery-view).is-in .gallery-frame {
+  animation: galleryWipe 1100ms var(--ease-expo) var(--gallery-delay, 0ms) both;
+}
+
+.gallery-section:not(.gallery-view).is-in .gallery-img {
+  animation: gallerySettle 1600ms var(--ease-expo) var(--gallery-delay, 0ms) both;
+}
+
+.gallery-section.gallery-view .gallery-kicker {
+  animation: heroFadeRise 700ms var(--ease-expo) both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 90%;
+}
+
+.gallery-section.gallery-view .gallery-rule {
+  transform-origin: center;
+  animation: heroRuleIn 500ms var(--ease-expo) both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 70%;
+}
+
+.gallery-section.gallery-view .gallery-title {
+  animation: galleryTitleIn 900ms var(--ease-expo) both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 95%;
+}
+
+.gallery-section.gallery-view .gallery-copy {
+  animation: heroFadeRise 700ms var(--ease-expo) both;
+  animation-timeline: view();
+  animation-range: entry 10% entry 100%;
+}
+
+.gallery-section.gallery-view .gallery-frame {
+  animation: galleryWipe 1s linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 32%;
+}
+
+.gallery-section.gallery-view .gallery-img {
+  animation: gallerySettle 1.4s linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+@keyframes galleryTitleIn {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes galleryWipe {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes gallerySettle {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
