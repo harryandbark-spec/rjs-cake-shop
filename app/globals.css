@@ -8,12 +8,59 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  overscroll-behavior-y: none;
 }
 
 body {
   background-color: #f5ebd9;
   color: #3a342e;
+  -webkit-tap-highlight-color: transparent;
 }
+
+@media (max-width: 767px) {
+  button,
+  a {
+    touch-action: manipulation;
+  }
+
+  .reveal {
+    transform: translateY(12px);
+    transition: opacity 650ms var(--ease-expo), transform 650ms var(--ease-expo);
+  }
+
+  .reveal.is-visible {
+    animation: none;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-menu {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    overflow: hidden;
+    transition: grid-template-rows 450ms var(--ease-expo), opacity 300ms ease;
+  }
+
+  .mobile-menu > nav {
+    min-height: 0;
+  }
+
+  .mobile-menu-open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .gallery-frame {
+    transition: transform 500ms var(--ease-expo);
+  }
+
+  .gallery-frame:active {
+    transform: scale(0.985);
+  }
+}
+
 
 ::selection {
   background-color: #1a365d;
